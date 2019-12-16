@@ -26,7 +26,8 @@ node ('ubuntu_node1') {
       sh 'sudo ps -aef |grep spring-petclinic |awk \'{print $2;exit}\' |xargs kill -9'       
     } catch (err) {
       echo err
+    } finally{
+      sh "ssh jenkins@192.168.56.12 'nohup java -jar /opt/petclinic/spring-petclinic-2.2.0.BUILD-SNAPSHOT.jar &'"
     }
-    sh "ssh jenkins@192.168.56.12 'nohup java -jar /opt/petclinic/spring-petclinic-2.2.0.BUILD-SNAPSHOT.jar &'"
   }
 }
