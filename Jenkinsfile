@@ -6,15 +6,15 @@ node ('master') {
   }
   stage ('Build') {
     echo "Building project."
-    sh "${MVN}/mvn clean compile"
+    sh "${MVN}/bin/mvn clean compile"
   }
   stage ('Test') {
     echo "Testing project"
-    sh "${MVN}/mvn test"
+    sh "${MVN}/bin/mvn test"
     junit '**/target/surefire-reports/TEST-*.xml'
   }
   stage ('Package') {
     echo "Packaging project"
-    sh "${MVN}/mvn package"
+    sh "${MVN}/bin/mvn package"
   }
 }
