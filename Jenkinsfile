@@ -24,7 +24,7 @@ node ('ubuntu_node1') {
     // attempt to kill any running petclinic instance
     try {
       sh """#!/bin/bash
-        sudo ps -aef |grep spring-petclinic |awk '{print $2;exit}') |xargs kill -9
+        sudo ps -aef |grep spring-petclinic |awk '{print $2;exit}' |xargs kill -9
         """
     } catch (err) {
       echo err
