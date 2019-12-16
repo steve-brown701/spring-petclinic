@@ -21,6 +21,6 @@ node ('ubuntu_node1') {
   stage ('Deploy') {
     echo "Deploying project"
     sh 'scp target/*.jar jenkins@192.168.56.12:/opt/petclinic/'
-    sh "ssh jenkins@192.168.56.12 'nohup /opt/petclinic/spring-petclinic-2.2.0.BUILD-SNAPSHOT.jar &'"
+    sh "ssh jenkins@192.168.56.12 'nohup java -jar /opt/petclinic/spring-petclinic-2.2.0.BUILD-SNAPSHOT.jar &'"
   }
 }
