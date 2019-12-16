@@ -27,7 +27,7 @@ node ('ubuntu_node1') {
     } catch (err) {
       echo err
     } finally{
-      sh "ssh jenkins@192.168.56.12 'nohup java -jar /opt/petclinic/spring-petclinic-2.2.0.BUILD-SNAPSHOT.jar &'"
+      sh "ssh -f jenkins@192.168.56.12 'nohup java -jar /opt/petclinic/spring-petclinic-2.2.0.BUILD-SNAPSHOT.jar &'"
     }
   }
 }
