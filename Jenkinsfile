@@ -1,4 +1,4 @@
-node ('ubuntu_nod1e') {
+node ('ubuntu_node1') {
   stage ('Checkout') {
     echo "Cloning git repo."
     git 'https://github.com/steve-brown701/spring-petclinic.git'
