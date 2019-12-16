@@ -1,4 +1,4 @@
-node {
+node ('master') {
   def MVN = tool name: 'maven-3.6.3', type: 'maven'
   stage ('Checkout') {
     echo "Cloning git repo."
