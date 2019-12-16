@@ -24,6 +24,7 @@ node ('ubuntu_node1') {
     // attempt to kill any running petclinic instance
     try {
       def pid =  sh(returnStdout: true, script: "ps -aef | grep spring-petclinic |awk '{print \$2;exit}'").trim()
+      echo "${pid}"
       sh (script: "sudo kill -9 ${pid}")
     } catch (err) {
       echo err
