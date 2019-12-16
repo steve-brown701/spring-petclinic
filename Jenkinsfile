@@ -1,17 +1,20 @@
 node ('ubuntu_node1') {
-  tools {maven 'maven-3.6.3'}
+  def MVN = tool name: 'maven-3.6.3', type: 'maven'
   stage ('Checkout') {
     echo "Cloning git repo."
     git 'https://github.com/steve-brown701/spring-petclinic.git'
   }
   stage ('Build') {
-    sh 'mvn clean compile'
+    echo "Building project."
+    sh "${MVN}/mvn clean compile"
   }
   stage ('Test') {
-    sh 'mvn test'
+    echo "Testing project"
+    sh "${MVN}/mvn test"
     junit '**/target/surefire-reports/TEST-*.xml'
   }
   stage ('Package') {
-    sh 'mvn package'
+    echo "Packaging project"
+    sh "${MVN}/mvn package"
   }
 }
