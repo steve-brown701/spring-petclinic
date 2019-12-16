@@ -18,4 +18,7 @@ node ('ubuntu_node1') {
     sh "${MVN}/bin/mvn package"
     archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
   }
+  stage ('Deploy') {
+    echo "Deploying project"
+  }
 }
