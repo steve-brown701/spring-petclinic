@@ -1,4 +1,5 @@
 node ('ubuntu_node1') {
+  tools {maven 'maven-3.6.3'}
   stage ('Checkout') {
     echo "Cloning git repo."
     git 'https://github.com/steve-brown701/spring-petclinic.git'
