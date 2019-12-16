@@ -23,8 +23,8 @@ node ('ubuntu_node1') {
     sh 'scp target/*.jar jenkins@192.168.56.12:/opt/petclinic/'
     // attempt to kill any running petclinic instance
     try {
-      //sh "sudo kill -9 ${ps -aef | grep spring-petclinic |awk '{print $2;exit}'}"
-      sh (script: sudo kill -9 $(ps -aef | grep spring-petclinic |awk '{print $2;exit}'))
+      def pid =  sh(returnStdout: true, script: "ps -aef | grep spring-petclinic |awk '{print $2;exit}'").trim()
+      sh (script: "sudo kill -9 ${pid}")
     } catch (err) {
       echo err
     }
