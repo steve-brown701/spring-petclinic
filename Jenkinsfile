@@ -16,5 +16,6 @@ node ('ubuntu_node1') {
   stage ('Package') {
     echo "Packaging project"
     sh "${MVN}/bin/mvn package"
+    archiveArtifact artifacts: 'target/*.jar', fingerprint: true
   }
 }
