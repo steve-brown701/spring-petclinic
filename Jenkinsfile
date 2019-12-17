@@ -23,7 +23,8 @@ node ('ubuntu_node1') {
     sh 'scp target/*.jar jenkins@192.168.56.12:/opt/petclinic/'
     // attempt to kill any running petclinic instance
     try {
-      sh 'ssh jenkins@192.168.56.12 \'sudo ps -aef |grep spring-petclinic |awk \'{print $2;exit}\' |xargs kill -9\''      
+      sh 'ssh jenkins@192.168.56.12 "echo sudo ps -aef |grep spring-petclinic |awk \'{print $2;exit}\' |xargs kill -9" >> kick.sh'
+      sh './kick.sh'      
     } catch (err) {
       echo err
     } finally{
