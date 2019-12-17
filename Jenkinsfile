@@ -23,12 +23,13 @@ node ('ubuntu_node1') {
     sh 'scp target/*.jar jenkins@192.168.56.12:/opt/petclinic/'
     // attempt to kill any running petclinic instance
     try {
+      // create script on server
       sh 'ssh jenkins@192.168.56.12 "echo \"kill -9 $(ps -aef | grep spring-petclinic |awk '{print $2;exit}')\" >> kick.sh"'
-      sh 'ssh jenkins@192.168.56.12 "./kick.sh"'      
-    } catch (err) {
-      echo err
+      sh 'ssh jenkins@192.168.56.12 "chmod a+x kick.sh && ./kill.sh"'      
+    } catch (Exception err) {
+      echo "Error killing app!!!"
     } finally{
-      sh 'ssh jenkins@192.168.56.12 \'java -jar /opt/petclinic/spring-petclinic-2.2.0.BUILD-SNAPSHOT.jar &\''
+      sh 'ssh jenkins@192.168.56.12 \'nohup java -jar /opt/petclinic/spring-petclinic-2.2.0.BUILD-SNAPSHOT.jar & && exit 0\''
     }
   }
 }
