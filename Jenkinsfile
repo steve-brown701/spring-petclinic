@@ -29,7 +29,7 @@ node ('ubuntu_node1') {
     } catch (Exception err) {
       echo "Error killing app!!!"
     } finally{
-      sh 'ssh jenkins@192.168.56.12 \'nohup java -jar /opt/petclinic/spring-petclinic-2.2.0.BUILD-SNAPSHOT.jar & && exit 0\''
+      sh 'ssh jenkins@192.168.56.12 \'nohup java -jar /opt/petclinic/spring-petclinic-2.2.0.BUILD-SNAPSHOT.jar &; exit 0\''
     }
   }
 }
