@@ -30,8 +30,10 @@ node ('ubuntu_node1') {
       echo "Error killing app!!!"
     } finally{
       // start application and exit
-      sh 'ssh jenkins@192.168.56.12 \'nohup java -jar /opt/petclinic/spring-petclinic-2.2.0.BUILD-SNAPSHOT.jar & 1>&2\''
-      exit 0
+      sh """
+        ssh jenkins@192.168.56.12 'nohup java -jar /opt/petclinic/spring-petclinic-2.2.0.BUILD-SNAPSHOT.jar &'
+        exit 0
+      """
     }
   }
 }
